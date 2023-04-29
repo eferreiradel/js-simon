@@ -1,0 +1,25 @@
+* {
+  border: 1px solid black;
+}
+
+body {
+  background-color: darkslategray;
+}
+
+.hide {
+  display: none;
+}
+
+.debug {
+  background-color: red;
+  border: 2px solid blue;
+}
+
+.card {
+  background-color: blue;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 5);
+  height: 50px;
+}
