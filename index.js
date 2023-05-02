@@ -1,66 +1,49 @@
-function debConsole() {
-  console.log("debug console -- ok");
-}
+console.log("5");
+//funzioni
 
-console.log("check -- ok - ok");
+const gameContainer = document.querySelector("#gameContainer");
+const inputContainer = document.querySelector("#inputContainer");
+const timerContainer = document.querySelector("#timerContainer");
 
-// funzione che gnera un numero Random
-//store la lista di numero in un array
+document.querySelector("#init").addEventListener("click", () => {
+  const setLevel = 5;
+  const gameNumbers = [];
+  const userAnswer = [];
 
-//SE i numero generati sono uguali ai numeri che VORREI generate allora parti il timer
-
-//timer che parte dopo la funzine
-// come? con una condition booleana true
-
-//allo scadee del tempo parte la funzione che mnasconde gli oggeti:
-
-//funzione che allo aggiunde la casse " hide"
-
-document.getElementById("initGame").addEventListener("click", function () {
-  console.log("check");
-
-  let gameContainer = document.querySelector("#gameContainer");
-  let gameNumbers = [];
-
-  let difficultLevel = 5;
-  for (counter = 0; counter < difficultLevel; counter++) {
-    generateDomElement("gameContainer", "div", "card");
+  for (counter = 0; counter < setLevel; counter++) {
+    let gameCards = document.createElement("div");
+    gameCards.classList.add("card", "gameNumbers");
+    gameCards.innerHTML = getRandomNumber();
+    gameContainer.appendChild(gameCards);
+    gameNumbers.push(gameCards.innerHTML);
   }
-  let card = document.querySelectorAll(".card");
-  card.forEach((card) => {
-    card.innerHTML = getRandomNumber();
-    gameNumbers.push(card.innerHTML);
+
+  setTimeout(() => {
+    document.querySelectorAll(".gameNumbers").forEach((element) => {
+      element.classList.add("d-none");
+    });
+    for (counter = 0; counter < setLevel; counter++) {
+      let gameINputs = document.createElement("input");
+      gameINputs.setAttribute("type", "text");
+      gameContainer.appendChild(gameINputs);
+      gameINputs.classList.add("card");
+    }
+  }, 5000);
+
+  let gameInputvalue = document.querySelectorAll("input").forEach((element) => {
+    userAnswer.push(element.value);
   });
 
-  setTimeout(function () {
-    gameContainer.classList.add("d-none");
-  }, 5000);
+  document.querySelector("#sendAnswer").addEventListener("click", () => {
+    gameResult(gameNumbers, userAnswer);
+  });
 });
 
-function generateDomElement(elementParent, tagHtml, cssClass) {
-  let parent = document.getElementById(elementParent);
-
-  let element = document.createElement(tagHtml);
-  element.classList.add(cssClass);
-
-  parent.appendChild(element);
+function gameResult(valoreUtente, valoreGioco) {
+  let a = valoreUtente;
+  let b = valoreGioco;
 }
-
-function getRandomNumber() {
-  let random = Math.floor(Math.random() * 100 + 1);
-  console.log(random);
-  return random;
-}
-
-function getRandomNumbers(numbers) {
-  let randomNUmbers = [];
-  for (counter = 0; counter < numbers; counter++) {
-    let random = Math.floor(Math.random() * 100 + 1);
-    randomNUmbers.push(random);
-  }
-  return randomNUmbers;
-}
-
-function hideObject(element) {
-  element.classList.add("d-none");
+function getRandomNumber(number) {
+  number = Math.floor(Math.random() * 100) + 1;
+  return number;
 }
