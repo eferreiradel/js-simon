@@ -42,6 +42,11 @@ document.querySelector("#init").addEventListener("click", () => {
 function gameResult(valoreUtente, valoreGioco) {
   let a = valoreUtente;
   let b = valoreGioco;
+  if (valoreUtente === valoreGioco) {
+    alert("Hai Vinto!");
+  } else {
+    alert("U lose lol");
+  }
 }
 function getRandomNumber(number) {
   number = Math.floor(Math.random() * 100) + 1;
